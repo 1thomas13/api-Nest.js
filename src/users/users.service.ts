@@ -59,6 +59,8 @@ export class UsersService {
     if (!userFound)
       return new HttpException('User not found', HttpStatus.NOT_FOUND)
 
-    return this.userRepository.update({ id }, user)
+    const updateUser = Object.assign(userFound, user)
+
+    return this.userRepository.save(updateUser)
   }
 }
